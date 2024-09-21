@@ -42,6 +42,7 @@ public static class Search {
 
         return count; // Didn't find it
     }
+    // O(n)
 
     /// <summary>
     /// Search for 'target' in the list 'data'. When its found (or not found) the variable count which represents
@@ -62,4 +63,8 @@ public static class Search {
         // Search in the lower half before index middle
         return 1 + SearchSorted2(data, target, start, middle - 1);
     }
+    // O(log n)
 }
+// Questions:
+// 1. The performance of the first function is O(n) and the second one is O(log n) because the loops keep getting shorter as it continues.
+// 2. The second function had the better performance in the worst case, and we can see the evidence in the time comparing the two functions.
