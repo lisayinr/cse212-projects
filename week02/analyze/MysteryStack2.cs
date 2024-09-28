@@ -47,3 +47,10 @@
         return stack.Pop();
     }
 }
+// The stack takes floats and calculates their final result either by adding, subtracting, multiplying, or dividing.
+// 5 3 7 + *: output -> 50
+// 6 2 + 5 3 - /: output -> 4
+// Invalid Case 1!: If the stack count is less than 2 items.
+// Invalid Case 2!: If dividing by 0.
+// Invalid Case 3!: If charachter is neither a number nor +, -, *, or /.
+// Invalid Case 4!: If the end of the process results in a stack that is not equal to 1.

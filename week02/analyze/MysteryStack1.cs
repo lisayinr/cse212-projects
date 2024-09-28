@@ -11,3 +11,7 @@
         return result;
     }
 }
+// The program creates a stack of the letters within a given string and returns them in reverse order.
+// racecar: output -> racecar
+// stressed: output -> desserts
+// a nut for a jar of tuna: output -> anut fo raj a rof tun a
