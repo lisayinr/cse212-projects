@@ -8,11 +8,13 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: 
     // Expected Result: 
-    // Defect(s) Found: 
+    // Defect(s) Found:    
     public void TestPriorityQueue_1()
     {
-        var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        var priorityQueueEnqueue = new PriorityQueue();
+        priorityQueueEnqueue.Enqueue("Low", 1);
+        var result = priorityQueueEnqueue.Dequeue();
+        Assert.AreEqual("Low", result, "Expected 'Low to be dequeued.");
     }
 
     [TestMethod]
