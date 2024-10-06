@@ -6,9 +6,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 public class PriorityQueueTests
 {
     [TestMethod]
-    // Scenario: 
-    // Expected Result: 
-    // Defect(s) Found:    
+    // Scenario: Enqueue a single item and dequeue it afterwards.
+    // Expected Result: The item that is dequed should be "Low"
+    // Defect(s) Found: None  
     public void TestPriorityQueue_1()
     {
         var priorityQueueEnqueue = new PriorityQueue();
@@ -18,14 +18,45 @@ public class PriorityQueueTests
     }
 
     [TestMethod]
-    // Scenario: 
-    // Expected Result: 
-    // Defect(s) Found: 
+    // Scenario: Dequeue from an empty queue.
+    // Expected Result: An error exception will be thrown.
+    // Defect(s) Found: None
     public void TestPriorityQueue_2()
     {
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        priorityQueue.Dequeue();
     }
 
-    // Add more test cases as needed below.
+    [TestMethod]
+    // Scenario: Enqueuing multiple items with different priorities and then dequeuing.
+    // Expected Result: The first item to be dequeued will be the item with "High" priority.
+    // Defect(s) Found: None
+    public void TestPriorityQueue_3()
+    {
+        var priorityQueue = new PriorityQueue();
+        priorityQueue.Enqueue("Medium", 2);
+        priorityQueue.Enqueue("High", 3);
+        priorityQueue.Enqueue("Low", 1);
+
+        var result = priorityQueue.Dequeue();
+        Assert.AreEqual("High", result, "Expected 'High' to be dequeued first.");
+    }
+
+    [TestMethod]
+    // Scenario: Enqueing items with same priority.
+    // Expected Result: The first added item with the same priority should be dequed first.
+    // Defect(s) Found: None
+    public void TestPriorityQueue_4()
+    {
+        var priorityQueue = new PriorityQueue();
+        priorityQueue.Enqueue("First", 1);
+        priorityQueue.Enqueue("Second", 1);
+
+        var result1 = priorityQueue.Dequeue();
+        var result2 = priorityQueue.Dequeue();
+
+        Assert.AreEqual("First", result1, "Expect 'First' to be dequeued first.");
+        Assert.AreEqual("Second", result2, "Expect 'Second' to be dequeued second.");
+
+    }
 }
