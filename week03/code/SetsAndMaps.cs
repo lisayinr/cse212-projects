@@ -21,8 +21,28 @@ public static class SetsAndMaps
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
     public static string[] FindPairs(string[] words)
     {
-        // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        HashSet<string> seenWords = new HashSet<string>();
+        List<string> result = new();
+
+        foreach (string word in words)
+        {
+            if (word[0] == word[1])
+            {
+                continue;
+            }
+
+            string reversed = new string(new char[] {word[1], word[0]});
+
+            if (seenWords.Contains(reversed))
+            {
+                result.Add($"{word} & {reversed}");
+            }
+            else
+            {
+                seenWords.Add(word);
+            }
+        }
+        return result.ToArray();
     }
 
     /// <summary>
@@ -39,10 +59,24 @@ public static class SetsAndMaps
     public static Dictionary<string, int> SummarizeDegrees(string filename)
     {
         var degrees = new Dictionary<string, int>();
+
         foreach (var line in File.ReadLines(filename))
         {
             var fields = line.Split(",");
-            // TODO Problem 2 - ADD YOUR CODE HERE
+
+            if (fields.Length > 3)
+            {
+                string degree = fields[3].Trim();
+
+                if (degrees.ContainsKey(degree))
+                {
+                    degrees[degree]++;
+                }
+                else
+                {
+                    degrees[degree] = 1;
+                }
+            }
         }
 
         return degrees;
@@ -66,8 +100,44 @@ public static class SetsAndMaps
     /// </summary>
     public static bool IsAnagram(string word1, string word2)
     {
-        // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        string lowercaseWord1 = word1.ToLower().Replace(" ", "");
+        string lowercaseWord2 = word2.ToLower().Replace(" ", "");
+        var letterCount = new Dictionary<char, int>();
+
+        if (lowercaseWord1.Length != lowercaseWord2.Length)
+        {
+            return false;
+        }
+
+        foreach (char letter in lowercaseWord1)
+        {
+            if (letterCount.ContainsKey(letter))
+            {
+                letterCount[letter]++;
+            }
+            else
+            {
+                letterCount[letter] = 1;
+            }
+        }
+
+        foreach (char letter in lowercaseWord2)
+        {
+            if (letterCount.ContainsKey(letter))
+            {
+                letterCount[letter]--;
+
+                if (letterCount[letter] < 0)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     /// <summary>
