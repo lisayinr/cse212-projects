@@ -11,9 +11,6 @@ public class Node
 
     public void Insert(int value)
     {
-        // TODO Start Problem 1
-
-
         if (value < Data)
         {
             // Insert to the left
